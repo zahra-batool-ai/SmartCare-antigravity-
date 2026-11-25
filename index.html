@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCare - Hospital Management System</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/views.css">
+</head>
+<body>
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+  <div id="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <!-- Sidebar Brand Header -->
+      <div class="sidebar-header">
+        <div class="brand-wrapper" id="brand-logo-btn">
+          <div class="brand-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4M10 9h4M12 7v4"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">Smart<span>Care</span></div>
+            <div class="brand-subtitle">Hospital Admin</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Management</div>
+        
+        <a class="nav-item active" data-view="dashboard" id="nav-dashboard">
+          <span class="nav-icon" id="nav-icon-dashboard"></span>
+          <span>Admin Dashboard</span>
+        </a>
+
+        <a class="nav-item" data-view="patients" id="nav-patients">
+          <span class="nav-icon" id="nav-icon-patients"></span>
+          <span>Patients</span>
+          <span class="nav-item-badge" id="badge-nav-patients">0</span>
+        </a>
+
+        <a class="nav-item" data-view="doctors" id="nav-doctors">
+          <span class="nav-icon" id="nav-icon-doctors"></span>
+          <span>Doctors & Staff</span>
+          <span class="nav-item-badge" id="badge-nav-doctors">0</span>
+        </a>
+
+        <a class="nav-item" data-view="appointments" id="nav-appointments">
+          <span class="nav-icon" id="nav-icon-appointments"></span>
+          <span>Appointments</span>
+          <span class="nav-item-badge" id="badge-nav-appointments">0</span>
+        </a>
+
+        <div class="nav-section-title">Clinical Operations</div>
+
+        <a class="nav-item" data-view="queue" id="nav-queue">
+          <span class="nav-icon" id="nav-icon-queue"></span>
+          <span>Patient Queue</span>
+          <span class="nav-item-badge badge-amber" id="badge-nav-queue">0</span>
+        </a>
+
+        <a class="nav-item" data-view="medical" id="nav-medical">
+          <span class="nav-icon" id="nav-icon-medical"></span>
+          <span>Medical Visits</span>
+          <span class="nav-item-badge" id="badge-nav-medical">0</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="system-status-indicator">
+          <span class="status-dot"></span>
+          <span>Local Storage: Active (Offline)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <!-- Top Application Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button type="button" class="btn-mobile-menu" id="btn-mobile-menu" aria-label="Toggle Navigation">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- Live Date & Clock Widget -->
+          <div class="header-clock-widget" id="header-clock">
+            <span id="clock-date">--</span> &bull; <span id="clock-time">--:-- --</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Backup & Restore Actions -->
+          <button type="button" class="btn btn-sm btn-outline" id="btn-export-backup" title="Export JSON database backup">
+            <span id="icon-export-btn"></span> Export Data
+          </button>
+
+          <button type="button" class="btn btn-sm btn-outline" id="btn-import-backup" title="Import JSON database backup">
+            <span id="icon-import-btn"></span> Import Data
+          </button>
+
+          <button type="button" class="btn btn-sm btn-outline" id="btn-global-reset" title="Reset all records to factory demonstration data">
+            <span id="icon-reset-btn"></span> Reset
+          </button>
+
+          <!-- User Profile Badge -->
+          <div class="header-user-badge">
+            <div class="user-avatar-circle">AD</div>
+            <div class="user-details">
+              <span class="user-name">Hospital Admin</span>
+              <span class="user-role">Administrator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dynamic View Container -->
+      <main id="view-content" class="app-view-container">
+        <!-- Rendered by JavaScript -->
+      </main>
+    </div>
+  </div>
+
+  <!-- Hidden File Input for Database Import -->
+  <input type="file" id="import-db-file" accept=".json" style="display: none;">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/icons.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/patients.js"></script>
+  <script src="js/views/doctors.js"></script>
+  <script src="js/views/appointments.js"></script>
+  <script src="js/views/queue.js"></script>
+  <script src="js/views/medical.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
